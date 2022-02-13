@@ -115,18 +115,18 @@ ss_plugins_client_links(){
 
 ss_config_info(){
     echo -e "                                                   " >> ${HUMAN_CONFIG}
-    echo -e " Shadowsocks的配置信息：                           " >> ${HUMAN_CONFIG}
+    echo -e " Shadowsocks Config Infirmation：                           " >> ${HUMAN_CONFIG}
     echo -e "                                                   " >> ${HUMAN_CONFIG}
-    echo -e " 地址     : ${Red}${clientIpOrDomain}${suffix}     " >> ${HUMAN_CONFIG}
-    echo -e " 端口     : ${Red}${firewallNeedOpenPort}${suffix} " >> ${HUMAN_CONFIG}
-    echo -e " 密码     : ${Red}${shadowsockspwd}${suffix}       " >> ${HUMAN_CONFIG}
-    echo -e " 加密     : ${Red}${shadowsockscipher}${suffix}    " >> ${HUMAN_CONFIG}
+    echo -e " IP Address     : ${Green}${clientIpOrDomain}${suffix}     " >> ${HUMAN_CONFIG}
+    echo -e " Port           : ${Green}${firewallNeedOpenPort}${suffix} " >> ${HUMAN_CONFIG}
+    echo -e " Password       : ${Green}${shadowsockspwd}${suffix}       " >> ${HUMAN_CONFIG}
+    echo -e " Encryption     : ${Green}${shadowsockscipher}${suffix}    " >> ${HUMAN_CONFIG}
 }
 
 plugins_config_info(){
-    echo -e " 插件程序 : ${Red}${clientPluginName}${suffix}     " >> ${HUMAN_CONFIG}
-    echo -e " 插件选项 : ${Red}${clientPluginOpts}${suffix}     " >> ${HUMAN_CONFIG}
-    echo -e " 插件参数 : ${Red}${clientPluginArgs}${suffix}     " >> ${HUMAN_CONFIG}
+    echo -e " Plugins    : ${Green}${clientPluginName}${suffix}     " >> ${HUMAN_CONFIG}
+    echo -e " Options    : ${Green}${clientPluginOpts}${suffix}     " >> ${HUMAN_CONFIG}
+    echo -e " Parameters : ${Red}${clientPluginArgs}${suffix}     " >> ${HUMAN_CONFIG}
 }
 
 kcptun_config_info(){
@@ -145,8 +145,8 @@ cloak_config_info(){
 
 qrcode_config_info(){
     echo -e "                                                   " >> ${HUMAN_CONFIG}
-    echo -e " SS二维码 : ./ss-plugins.sh scan < ss://links >    " >> ${HUMAN_CONFIG}
-    echo -e " SS  链接 : ${Green}${sslinks}${suffix}            " >> ${HUMAN_CONFIG}
+    echo -e " SS QR Code : ./ss-plugins.sh scan < ss://links >    " >> ${HUMAN_CONFIG}
+    echo -e " SS Link    : ${Green}${sslinks}${suffix}            " >> ${HUMAN_CONFIG}
     echo -e "                                                   " >> ${HUMAN_CONFIG}
 }
 
