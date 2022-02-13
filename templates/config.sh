@@ -124,9 +124,16 @@ ss_config_info(){
 }
 
 plugins_config_info(){
-    echo -e " Plugins    : ${Green}${clientPluginName}${suffix}     " >> ${HUMAN_CONFIG}
-    echo -e " Options    : ${Green}${clientPluginOpts}${suffix}     " >> ${HUMAN_CONFIG}
-    echo -e " Parameters : ${Red}${clientPluginArgs}${suffix}     " >> ${HUMAN_CONFIG}
+    echo -e " Plugins        : ${Green}${clientPluginName}${suffix}     " >> ${HUMAN_CONFIG}
+    echo -e " Options        : ${Green}${clientPluginOpts}${suffix}     " >> ${HUMAN_CONFIG}
+    echo -e " Parameters     : ${Red}${clientPluginArgs}${suffix}     " >> ${HUMAN_CONFIG}
+}
+
+qrcode_config_info(){
+    echo -e "                                                   " >> ${HUMAN_CONFIG}
+    echo -e " SS QR Code     : ./ss-plugins.sh scan < ss://links >    " >> ${HUMAN_CONFIG}
+    echo -e " SS Link        : ${Green}${sslinks}${suffix}            " >> ${HUMAN_CONFIG}
+    echo -e "                                                   " >> ${HUMAN_CONFIG}
 }
 
 kcptun_config_info(){
@@ -143,12 +150,7 @@ cloak_config_info(){
     echo -e "                                                   " >> ${HUMAN_CONFIG}
 }
 
-qrcode_config_info(){
-    echo -e "                                                   " >> ${HUMAN_CONFIG}
-    echo -e " SS QR Code : ./ss-plugins.sh scan < ss://links >    " >> ${HUMAN_CONFIG}
-    echo -e " SS Link    : ${Green}${sslinks}${suffix}            " >> ${HUMAN_CONFIG}
-    echo -e "                                                   " >> ${HUMAN_CONFIG}
-}
+
 
 ss_base_show(){
     ss_config_info
