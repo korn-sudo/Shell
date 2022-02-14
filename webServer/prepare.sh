@@ -1,7 +1,7 @@
 is_enable_web_server(){
     while true
     do
-        _read "是否启用web服务器伪装 (默认: n) [y/n]:"
+        _read "Enable Webserver Camouflage [y/n]:"
         local yn="${inputInfo}"
         [ -z "${yn}" ] && yn="N"
         case "${yn:0:1}" in
@@ -12,7 +12,7 @@ is_enable_web_server(){
                 isEnableWeb=disable
                 ;;
             *)
-                _echo -e "输入有误，请重新输入."
+                _echo -e "Incorrect input, please try again.."
                 continue
                 ;;
         esac
@@ -24,20 +24,20 @@ is_enable_web_server(){
 web_server_menu(){
     local WEB_SERVER_STYLE=(caddy nginx)
 
-    generate_menu_logic "${WEB_SERVER_STYLE[*]}" "一个Web服务器" "1"
+    generate_menu_logic "${WEB_SERVER_STYLE[*]}" "a Webserver" "1"
     web_flag="${inputInfo}"
 }
 
 choose_nginx_version_menu(){
     local NGINX_PACKAGES_V=(Stable Mainline)
 
-    generate_menu_logic "${NGINX_PACKAGES_V[*]}" "Nginx软件包版本" "1"
+    generate_menu_logic "${NGINX_PACKAGES_V[*]}" "Nginx package version" "1"
     pkg_flag="${inputInfo}"
 }
 
 choose_caddy_version_menu(){
     local CADDY_PACKAGES_V=(Caddy Caddy2)
 
-    generate_menu_logic "${CADDY_PACKAGES_V[*]}" "Caddy软件包版本" "1"
+    generate_menu_logic "${CADDY_PACKAGES_V[*]}" "Caddy package version" "1"
     caddyVerFlag="${inputInfo}"
 }
