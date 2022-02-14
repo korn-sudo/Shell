@@ -42,7 +42,7 @@ AEAD_CHACHA20_POLY1305
 
 
 choose_ss_install_version(){
-    generate_menu_logic "${SS_DLV[*]}" "Shadowsocks版本" "2"
+    generate_menu_logic "${SS_DLV[*]}" "Shadowsocks Version" "2"
     SS_VERSION="${optionValue}"
 }
 
@@ -50,19 +50,19 @@ install_prepare_port() {
     while true
     do
         gen_random_prot
-        _read "请输入监听端口[1-65535] (默认: ${ran_prot}):"
+        _read "Please enter the listening port [1-65535]:"
         shadowsocksport="${inputInfo}"
         [ -z "${shadowsocksport}" ] && shadowsocksport="${ran_prot}"
         if ! judge_is_num "${shadowsocksport}"; then
-            _echo -e "请输入一个有效数字."
+            _echo -e "Please enter a valid number."
             continue
         fi
         if judge_is_zero_begin_num "${shadowsocksport}"; then
-            _echo -e "请输入一个非0开头的数字."
+            _echo -e "Please enter a number that does not start with 0."
             continue
         fi
         if ! judge_num_in_range "${shadowsocksport}" "65535"; then
-            _echo -e "请输入一个在1-65535之间的数字."
+            _echo -e "Please enter a number between 1-65535."
             continue
         fi
         kill_process_if_port_occupy "${shadowsocksport}"
@@ -73,7 +73,7 @@ install_prepare_port() {
 
 install_prepare_password(){
     gen_random_str
-    _read "请输入密码 (默认: ${ran_str12}):"
+    _read "Please enter password:"
     shadowsockspwd="${inputInfo}"
     [ -z "${shadowsockspwd}" ] && shadowsockspwd="${ran_str12}"
     _echo -r "  password = ${shadowsockspwd}"
@@ -92,7 +92,7 @@ install_prepare_cipher(){
             local tempNum=1
             local SHADOWSOCKS_CIPHERS=( "${GO_SHADOWSOCKS2_CIPHERS[@]}" )
         fi
-        generate_menu_logic "${SHADOWSOCKS_CIPHERS[*]}" "Shadowsocks加密方式" "${tempNum}"
+        generate_menu_logic "${SHADOWSOCKS_CIPHERS[*]}" "Shadowsocks Encryption" "${tempNum}"
         shadowsockscipher="${optionValue}"
         if [ "${shadowsockscipher}" == "AEAD_AES_128_GCM" ]; then
             shadowsockscipher="aes-128-gcm"
