@@ -1,7 +1,7 @@
 do_you_have_domain(){
     while true
     do
-        _read "你拥有自己的域名吗？ (默认: n) [y/n]:"
+        _read "Do you have your own domain name? [y/n]:"
         local yn="${inputInfo}"
         [ -z "${yn}" ] && yn="N"
         case "${yn:0:1}" in
@@ -12,7 +12,7 @@ do_you_have_domain(){
                 doYouHaveDomian=No
                 ;;
             *)
-                _echo -e "输入有误，请重新输入."
+                _echo -e "Incorrect input, please try again."
                 continue
                 ;;
         esac
@@ -26,14 +26,14 @@ _get_input_domain(){
 
     while true
     do
-        _read "请输入一个域名(${domainTypeTip})："
+        _read "Please enter a domain name(${domainTypeTip})："
         domain="${inputInfo}"
         if ! judge_is_domain "${domain}"; then
-            _echo -e "请输入一个格式正确的域名."
+            _echo -e "Please enter a properly formatted domain name."
             continue
         fi
         if ! judge_is_valid_domain "${domain}"; then
-            _echo -e "无法解析到IP，请输入一个正确有效的域名."
+            _echo -e "Could not resolve to IP，Please enter a valid and valid domain name."
             continue
         fi
         break
@@ -52,7 +52,7 @@ get_specified_type_domain(){
             _echo -r "  domain = ${domain} (${domainType})"
             break
         else
-            _echo -e "请输入一个${typeTip}类型的域名."
+            _echo -e "please enter a ${typeTip} type of domain name."
             continue
         fi
     done
@@ -66,7 +66,7 @@ get_cdn_or_dnsonly_type_domain(){
         _get_input_domain "${typeTip}"
         domainType=$(judge_domain_type "${domain_ip}")
         if [ "${domainType}" = "Other" ]; then
-            _echo -e "请输入一个${typeTip}类型的域名."
+            _echo -e "please enter a ${typeTip} type of domain name."
             continue
         fi
         _echo -r "  domain = ${domain} (${domainType})"
@@ -77,15 +77,15 @@ get_cdn_or_dnsonly_type_domain(){
 get_all_type_domain(){
     while true
     do
-        _read "请任意输入一个域名 (默认: cloudfront.com):"
+        _read "Please enter any domain name (Default: cloudfront.com):"
         domain="${inputInfo}"
         [ -z "${domain}" ] && domain="cloudfront.com"
         if ! judge_is_domain "${domain}"; then
-            _echo -e "请输入一个格式正确的域名."
+            _echo -e "Please enter a properly formatted domain name."
             continue
         fi
         if ! judge_is_valid_domain "${domain}"; then
-            _echo -e "无法解析到IP，请输入一个正确有效的域名."
+            _echo -e "Unable to resolve to IP, please enter a valid domain name."
             continue
         fi
         unset domainType
@@ -98,11 +98,11 @@ get_input_ws_path(){
     gen_random_str
     while true
     do
-        _read "请输入你的WebSocket分流路径(默认：/${ran_str5}):"
+        _read "Please enter your WebSocket offload path ( Default：/${ran_str5}):"
         path="${inputInfo}"
         [ -z "${path}" ] && path="/${ran_str5}"
         if ! judge_is_path "${path}"; then
-            _echo -e "请输入以 / 开头的路径."
+            _echo -e "Please enter a path starting with /"
             continue
         fi
         _echo -r "  path = ${path}"
@@ -113,20 +113,20 @@ get_input_ws_path(){
 _get_input_mux_max_stream() {
     while true
     do
-        _read "请输入一个实际TCP连接中的最大复用流数 (默认: 8):"
+        _read "Please enter the maximum number of multiplexed streams in an actual TCP connection (default: 8)"
         mux="${inputInfo}"
         [ -z "${mux}" ] && mux=8
         expr "${mux}" + 1 &>/dev/null
         if ! judge_is_num "${mux}"; then
-            _echo -e "请输入一个有效数字."
+            _echo -e "Please enter a valid number."
             continue
         fi
         if judge_is_zero_begin_num "${mux}"; then
-            _echo -e "请输入一个非0开头的数字."
+            _echo -e " Please enter a number that does not start with 0."
             continue
         fi
         if ! judge_num_in_range "${mux}" "1024"; then
-            _echo -e "请输入一个在1-65535之间的数字."
+            _echo -e "Please enter a number between 1-65535."
             continue
         fi
         echo
@@ -139,7 +139,7 @@ _get_input_mux_max_stream() {
 _is_disable_mux(){
     while true
     do
-        _read "是否禁用 mux (默认: n) [y/n]:"
+        _read "Do you want to disable Mux? [y/n]:"
         local yn="${inputInfo}"
         [ -z "${yn}" ] && yn="N"
         case "${yn:0:1}" in
@@ -150,7 +150,7 @@ _is_disable_mux(){
                 isDisableMux=enable
                 ;;
             *)
-                _echo -e "输入有误，请重新输入!"
+                _echo -e "Incorrect input, please try again!"
                 continue
                 ;;
         esac
@@ -170,16 +170,16 @@ is_disable_mux_logic(){
 get_input_mirror_site(){
     while true
     do
-        _echo -u "${Tip} 该站点建议满足(位于海外、支持HTTPS协议、会用来传输大流量... )的条件，默认值不建议使用."
-        _read -d "请输入你需要镜像到的站点(默认：https://www.bing.com)："
+        _echo -u "${Tip} This site is recommended to meet the conditions (located overseas, supports HTTPS protocol, will be used to transmit large traffic... ), the default value is not recommended."
+        _read -d "Please enter the site you want to mirror to (Default：https://www.bing.com)："
         mirror_site="${inputInfo}"
         [ -z "${mirror_site}" ] && mirror_site="https://www.bing.com"
         if ! judge_is_https_begin_site "${mirror_site}"; then
-            _echo -e "请输入以${Red} https:// ${suffix}开头，以${Red} 域名 ${suffix}结尾的URL."
+            _echo -e "Please enter ${Red} https:// ${suffix} starts with ${Red} domain name ${suffix}ending URL."
             continue
         fi
         if ! judge_is_valid_domain "${mirror_site}"; then
-            _echo -e "无法解析到IP，请输入一个正确有效的域名."
+            _echo -e "Could not resolve to IP，Please enter a valid and valid domain name."
             continue
         fi
         _echo -r "  mirror_site = ${mirror_site}"
