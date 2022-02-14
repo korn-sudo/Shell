@@ -138,15 +138,15 @@ qrcode_config_info(){
 
 kcptun_config_info(){
     echo -e "                                                   " >> ${HUMAN_CONFIG}
-    echo -e " 手机参数 : ${clientPhoneArgs}                     " >> ${HUMAN_CONFIG}
+    echo -e "  Phone Setting : ${clientPhoneArgs}                     " >> ${HUMAN_CONFIG}
     echo -e "                                                   " >> ${HUMAN_CONFIG}
 }
 
 cloak_config_info(){
     echo -e "                                                   " >> ${HUMAN_CONFIG}
-    echo -e " AdminUID : ${ckauid}                              " >> ${HUMAN_CONFIG}
-    echo -e " CK  公钥 : ${ckpub}                               " >> ${HUMAN_CONFIG}
-    echo -e " CK  私钥 : ${ckpv}                                " >> ${HUMAN_CONFIG}
+    echo -e "       AdminUID : ${ckauid}                              " >> ${HUMAN_CONFIG}
+    echo -e " CK  Public Key : ${ckpub}                               " >> ${HUMAN_CONFIG}
+    echo -e "CK  Private Key : ${ckpv}                                " >> ${HUMAN_CONFIG}
     echo -e "                                                   " >> ${HUMAN_CONFIG}
 }
 
